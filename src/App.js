@@ -11,17 +11,18 @@ function App() {
         lastName: "",
         age: 0,
         postalCode: "",
-        frequency: "wekelijks",
+        frequency: "twee-wekelijks",
         deliveryTime: "overdag",
         comments: "",
         conditions: false
     });
 
     function handleState(e) {
-        const value = e.target.value;
+        const value =
+            e.target.type === "checkbox" ? e.target.checked : e.target.value;
         setState({
             ...state,
-            [e.target.name1]: value
+            [e.target.name]: value
     })
         ;
     }
@@ -29,7 +30,17 @@ function App() {
     function handleSubmit(e) {
         e.preventDefault()
         console.log("Verstuurd!");
-        console.log(state.name1);
+        console.log(state);
+        setState({
+            firstName: "",
+            lastName: "",
+            age: 0,
+            postalCode: "",
+            frequency: "twee-wekelijks",
+            deliveryTime: "overdag",
+            comments: "",
+            conditions: false
+        })
     }
 
     return (
@@ -97,7 +108,7 @@ function App() {
                 <span>Bezorgfrequentie</span>
                 <select
                     id="bezorgfrequentie"
-                    name1="frequency"
+                    name="frequency"
                     onChange={handleState}
                     value={state.frequency}
                 >
